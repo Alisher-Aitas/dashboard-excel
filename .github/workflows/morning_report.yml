@@ -1,0 +1,28 @@
+name: Утренний отчёт в Telegram
+
+on:
+  schedule:
+    - cron: '30 3 * * *'  # 08:30 по UTC+5 (Усть-Каменогорск)
+  workflow_dispatch:        # Ручной запуск для тестирования
+
+jobs:
+  send-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Получить файлы репозитория
+        uses: actions/checkout@v3
+
+      - name: Установить Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Установить зависимости
+        run: pip install -r requirements.txt
+
+      - name: Отправить отчёт в Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python send_report.py
