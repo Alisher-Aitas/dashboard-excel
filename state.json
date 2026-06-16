@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "id": "mpf_gofro_566x382x121",
+      "factory": "МПФ",
+      "name": "Гофрокоробы с логотипом, 566×382×121",
+      "supplier": "KZ Recycling",
+      "supplier_days": 10,
+      "stage": "top",
+      "stage_started": null,
+      "last_message_id": null,
+      "last_reminder_date": null,
+      "history": []
+    },
+    {
+      "id": "ukpf_gofro_566x382x121",
+      "factory": "УКПФ",
+      "name": "Гофроящик 566 х 382 х 121",
+      "supplier": "KZ Recycling",
+      "supplier_days": 10,
+      "stage": "top",
+      "stage_started": null,
+      "last_message_id": null,
+      "last_reminder_date": null,
+      "history": []
+    },
+    {
+      "id": "ukpf_gofro_566x382x137",
+      "factory": "УКПФ",
+      "name": "Гофроящик 566 х 382 х 137",
+      "supplier": "KZ Recycling",
+      "supplier_days": 10,
+      "stage": "top",
+      "stage_started": null,
+      "last_message_id": null,
+      "last_reminder_date": null,
+      "history": []
+    }
+  ],
+  "stage_order": ["top", "fvp", "zzd", "spec", "order", "done"],
+  "stage_names": {
+    "top": "Запустить ТОП",
+    "fvp": "Запустить ФВП",
+    "zzd": "Сформировать заявку на заключение договора",
+    "spec": "Подписать спецификацию",
+    "order": "Создать заказ поставщику",
+    "done": "Цикл завершён"
+  },
+  "wait_days_after_stage": {
+    "top": 3,
+    "fvp": 4,
+    "zzd": 3,
+    "spec": 1
+  }
+}
