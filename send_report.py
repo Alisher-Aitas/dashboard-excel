@@ -1,6 +1,6 @@
-импорт json
-импорт os
-импорт запросов
+import json
+import os
+import requests
 from datetime import datetime, timedelta, timezone
 
 BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
@@ -18,8 +18,8 @@ def now_astana():
 
 
 def in_send_window(dt):
-    if dt.weekday() >= 5: # 5=суббота, 6=воскресенье
-        вернуть False
+    if dt.weekday() >= 5:  # 5=субббота, 6=воскресенье
+        return False
     target = dt.replace(hour=TARGET_HOUR, minute=TARGET_MINUTE, second=0, microsecond=0)
     delta = abs((dt - target).total_seconds()) / 60
     return delta <= WINDOW_MINUTES
@@ -38,14 +38,14 @@ def save_state(state):
 def send_message(text, reply_to=None):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {"chat_id": CHAT_ID, "text": text}
-    если reply_to:
+    if reply_to:
         payload["reply_to_message_id"] = reply_to
     response = requests.post(url, json=payload)
     data = response.json()
     if data.get("ok"):
         return data["result"]["message_id"]
     print("Ошибка отправки:", data)
-    вернуть None
+    return None
 
 
 def already_sent_today(item, today_str):
@@ -53,13 +53,13 @@ def already_sent_today(item, today_str):
 
 
 def is_due(item, today):
-    этап = элемент["этап"]
-    если этап == "выполнено":
-        вернуть False
+    stage = item["stage"]
+    if stage == "done":
+        return False
 
     stage_started = item.get("stage_started")
-    если stage_started равно None:
-        вернуть True
+    if stage_started is None:
+        return True
 
     started_date = datetime.strptime(stage_started, "%Y-%m-%d").date()
     days_passed = (today - started_date).days
@@ -70,11 +70,11 @@ def is_due(item, today):
 def main():
     dt = now_astana()
     if not in_send_window(dt):
-        print(f"Сейчас {dt.strftime('%Y-%m-%d %H:%M')} по Астане — не входит в окно сообщения. Выход.")
-        возвращаться
+        print(f"Сейчас {dt.strftime('%Y-%m-%d %H:%M')} по Астане — не входит в окно отправки. Выход.")
+        return
 
-    состояние = load_state()
-    сегодня = dt.date()
+    state = load_state()
+    today = dt.date()
     today_str = today.isoformat()
     stage_names = state["stage_names"]
     wait_days = state["wait_days_after_stage"]
@@ -83,10 +83,10 @@ def main():
     due_items = []
 
     for item in state["items"]:
-        если item["stage"] == "done":
-            продолжать
+        if item["stage"] == "done":
+            continue
         if already_sent_today(item, today_str):
-            продолжать
+            continue
 
         prev_stage_index = stage_order.index(item["stage"]) - 1
         prev_stage = stage_order[prev_stage_index] if prev_stage_index >= 0 else None
