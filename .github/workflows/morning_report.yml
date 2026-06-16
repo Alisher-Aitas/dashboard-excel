@@ -2,8 +2,8 @@ name: Утренний отчёт в Telegram
 
 on:
   schedule:
-    - cron: '30 3 * * *'  # 08:30 по UTC+5 (Усть-Каменогорск)
-  workflow_dispatch:        # Ручной запуск для тестирования
+    - cron: '*/15 2-5 * * *'  # каждые 15 минут с 7:00 до 10:00 по Астане (UTC+5)
+  workflow_dispatch:
 
 jobs:
   send-report:
@@ -21,8 +21,16 @@ jobs:
       - name: Установить зависимости
         run: pip install -r requirements.txt
 
-      - name: Отправить отчёт в Telegram
+      - name: Проверить окно и отправить задачи
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python send_report.py
+
+      - name: Сохранить изменения состояния
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add state.json
+          git diff --staged --quiet || git commit -m "Обновление состояния после утренней отправки"
+          git push
