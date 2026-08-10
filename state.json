@@ -8,9 +8,10 @@
       "supplier_days": 10,
       "stage": "top",
       "stage_started": null,
-      "last_message_id": null,
-      "last_reminder_date": null,
-      "history": []
+      "last_message_id": 9,
+      "last_reminder_date": "2026-08-10",
+      "history": [],
+      "_wait_for_this_stage": 0
     },
     {
       "id": "ukpf_gofro_566x382x121",
@@ -20,9 +21,10 @@
       "supplier_days": 10,
       "stage": "top",
       "stage_started": null,
-      "last_message_id": null,
-      "last_reminder_date": null,
-      "history": []
+      "last_message_id": 10,
+      "last_reminder_date": "2026-08-10",
+      "history": [],
+      "_wait_for_this_stage": 0
     },
     {
       "id": "ukpf_gofro_566x382x137",
@@ -32,12 +34,20 @@
       "supplier_days": 10,
       "stage": "top",
       "stage_started": null,
-      "last_message_id": null,
-      "last_reminder_date": null,
-      "history": []
+      "last_message_id": 11,
+      "last_reminder_date": "2026-08-10",
+      "history": [],
+      "_wait_for_this_stage": 0
     }
   ],
-  "stage_order": ["top", "fvp", "zzd", "spec", "order", "done"],
+  "stage_order": [
+    "top",
+    "fvp",
+    "zzd",
+    "spec",
+    "order",
+    "done"
+  ],
   "stage_names": {
     "top": "Запустить ТОП",
     "fvp": "Запустить ФВП",
