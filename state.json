@@ -8,8 +8,8 @@
       "supplier_days": 10,
       "stage": "top",
       "stage_started": null,
-      "last_message_id": 17,
-      "last_reminder_date": "2026-08-17",
+      "last_message_id": 21,
+      "last_reminder_date": "2026-08-18",
       "history": [],
       "_wait_for_this_stage": 0
     },
@@ -21,8 +21,8 @@
       "supplier_days": 10,
       "stage": "top",
       "stage_started": null,
-      "last_message_id": 18,
-      "last_reminder_date": "2026-08-17",
+      "last_message_id": 22,
+      "last_reminder_date": "2026-08-18",
       "history": [],
       "_wait_for_this_stage": 0
     },
@@ -34,8 +34,8 @@
       "supplier_days": 10,
       "stage": "top",
       "stage_started": null,
-      "last_message_id": 19,
-      "last_reminder_date": "2026-08-17",
+      "last_message_id": 23,
+      "last_reminder_date": "2026-08-18",
       "history": [],
       "_wait_for_this_stage": 0
     }
